@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AviaFlightsView: View {
+    @Binding var isPresented: Bool
     @Binding var fromWhere: String
     @Binding var toWhere: String
     
@@ -17,27 +18,35 @@ struct AviaFlightsView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ChosenCitiesSearchFieldView(fromWhere: $fromWhere, toWhere: $toWhere)
+                ChosenCitiesSearchFieldView(isPresented: $isPresented, fromWhere: $fromWhere, toWhere: $toWhere)
                 
                 Spacer()
             }
             .padding()
+            .padding(.top, 31)
         }
     }
 }
 
 #Preview {
-    AviaFlightsView(fromWhere: .constant("Минск"), toWhere: .constant("Сочи"))
+    AviaFlightsView(isPresented: .constant(true), fromWhere: .constant("Минск"), toWhere: .constant("Сочи"))
         .preferredColorScheme(.dark)
 }
 
 struct ChosenCitiesSearchFieldView: View {
+    @Binding var isPresented: Bool
     @Binding var fromWhere: String
     @Binding var toWhere: String
     
     var body: some View {
         HStack {
-            Image(systemName: "arrow.left")
+            Button {
+                isPresented = false
+            } label: {
+                Image(systemName: "arrow.left")
+                    .fontWeight(.medium)
+            }
+            .buttonStyle(PlainButtonStyle())
             
             VStack {
                 HStack {
@@ -75,7 +84,7 @@ struct ChosenCitiesSearchFieldView: View {
                 }
             }
         }
-        .padding(16)
+        .padding()
         .background {
             RoundedRectangle(cornerRadius: 16)
                 .foregroundStyle(Color(red: 0.18, green: 0.19, blue: 0.21))
@@ -83,7 +92,7 @@ struct ChosenCitiesSearchFieldView: View {
     }
     
     func replace(_ x: inout String, with y: inout String) {
-        var temp = x
+        let temp = x
         x = y
         y = temp
     }

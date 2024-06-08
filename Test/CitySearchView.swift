@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CitySearchView: View {
-    @State private var isShowed = false
+    @State private var isAviaFlightsPresented = false
     
     @Binding var fromWhere: String
     @State private var toWhere = ""
@@ -19,7 +19,7 @@ struct CitySearchView: View {
                 PresentationDragIndicatorView()
                     .padding(.bottom, 25)
                 
-                CitySearchFieldView(isShowed: $isShowed, fromWhere: $fromWhere, toWhere: $toWhere)
+                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, toWhere: $toWhere)
                     .padding(.bottom, 26)
                 
                 HintRowView(toWhere: $toWhere)
@@ -39,9 +39,8 @@ struct CitySearchView: View {
                 Spacer()
             }
             .padding()
-            .navigationDestination(isPresented: $isShowed) {
-                AviaFlightsView(fromWhere: $fromWhere, toWhere: $toWhere)
-                    .navigationBarBackButtonHidden()
+            .fullScreenCover(isPresented: $isAviaFlightsPresented) {
+                AviaFlightsView(isPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, toWhere: $toWhere)
             }
         }
     }
@@ -62,7 +61,7 @@ struct PresentationDragIndicatorView: View {
 }
 
 struct CitySearchFieldView: View {
-    @Binding var isShowed: Bool
+    @Binding var isAviaFlightsPresented: Bool
     @Binding var fromWhere: String
     @Binding var toWhere: String
     
@@ -83,7 +82,7 @@ struct CitySearchFieldView: View {
                 Image(systemName: "magnifyingglass")
                 TextField("Куда - Турция", text: $toWhere)
                     .onSubmit {
-                        isShowed.toggle()
+                        isAviaFlightsPresented.toggle()
                     }
                 
                 if !toWhere.isEmpty {
