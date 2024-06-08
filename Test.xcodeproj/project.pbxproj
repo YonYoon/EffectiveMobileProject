@@ -127,9 +127,9 @@
 		154C51ED2C1197F7008B9832 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				150BF5392C14650100FDE8C2 /* Model.swift */,
 				15278FC12C101A4000EC9757 /* OfferCollectionFetcher.swift */,
 				154C51EA2C1197AA008B9832 /* Offer.swift */,
-				150BF5392C14650100FDE8C2 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
