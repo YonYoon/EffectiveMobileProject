@@ -57,7 +57,6 @@ struct TicketsSearchView: View {
 
 struct TicketsSearchFieldView: View {
     @SceneStorage("TicketsSearchView.fromWhere") private var fromWhere = ""
-    @State private var toWhere = ""
     @State private var isPresented = false
     
     var body: some View {
