@@ -9,9 +9,32 @@ import SwiftUI
 
 @main
 struct TestApp: App {
+    @StateObject private var fetcher = OfferCollectionFetcher()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                TicketsSearchView(fetcher: fetcher)
+                    .tabItem {
+                        Label("Авиабилеты", systemImage: "airplane")
+                    }
+                Text("Отели")
+                    .tabItem {
+                        Label("Отели", systemImage: "bed.double.fill")
+                    }
+                Text("Короче")
+                    .tabItem {
+                        Label("Короче", systemImage: "mappin.and.ellipse")
+                    }
+                Text("Подписки")
+                    .tabItem {
+                        Label("Подписки", systemImage: "bell.fill")
+                    }
+                Text("Профиль")
+                    .tabItem {
+                        Label("Профиль", systemImage: "person.fill")
+                    }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
 //  Created by Zhansen Zhalel on 06.06.2024.
 //
 
-import SwiftUI
+import Foundation
 
 struct Offer: Codable, Identifiable {
     let id: Int
@@ -23,10 +23,10 @@ struct OfferCollection: Codable {
 }
 
 extension Offer {
-    var image: Image {
-        if id == 1 { return Image("image1")}
-        else if id == 2 { return Image("image2")}
-        else if id == 3 { return Image("image3")}
-        else { return Image(systemName: "globe")}
+    var imageName: String {
+        if id == 1 { return "image1"}
+        else if id == 2 { return "image2"}
+        else if id == 3 { return "image3"}
+        else { return "image3"}
     }
 }
