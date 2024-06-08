@@ -66,10 +66,12 @@ struct TicketsSearchFieldView: View {
                 
                 VStack {
                     TextField("Откуда - Москва", text: $fromWhere)
+                    
                     Divider()
                         .overlay {
                             Color(.testGrey6)
                         }
+                    
                     HStack {
                         Button("Куда - Турция") {
                             isPresented.toggle()
