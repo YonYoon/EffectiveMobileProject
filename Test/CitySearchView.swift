@@ -11,7 +11,7 @@ struct CitySearchView: View {
     @State private var isAviaFlightsPresented = false
     
     @Binding var fromWhere: String
-    @State private var toWhere = ""
+    @State private var destination = ""
     
     var body: some View {
         NavigationStack {
@@ -19,16 +19,16 @@ struct CitySearchView: View {
                 PresentationDragIndicatorView()
                     .padding(.bottom, 25)
                 
-                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, toWhere: $toWhere)
+                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, toWhere: $destination)
                     .padding(.bottom, 26)
                 
-                HintRowView(toWhere: $toWhere)
+                HintRowView(destination: $destination)
                     .padding(.bottom, 26)
                 
                 VStack(spacing: 8) {
-                    PopularDirectionView(toWhere: $toWhere, cityImage: .stambul, cityName: "Стамбул")
-                    PopularDirectionView(toWhere: $toWhere, cityImage: .sochi, cityName: "Сочи")
-                    PopularDirectionView(toWhere: $toWhere, cityImage: .phuket, cityName: "Пхукет")
+                    PopularDirectionView(destination: $destination, cityImage: .stambul, cityName: "Стамбул")
+                    PopularDirectionView(destination: $destination, cityImage: .sochi, cityName: "Сочи")
+                    PopularDirectionView(destination: $destination, cityImage: .phuket, cityName: "Пхукет")
                 }
                 .padding()
                 .background {
@@ -40,7 +40,7 @@ struct CitySearchView: View {
             }
             .padding()
             .fullScreenCover(isPresented: $isAviaFlightsPresented) {
-                AviaFlightsView(isPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, toWhere: $toWhere)
+                AviaFlightsView(isPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, destination: $destination)
             }
         }
     }
@@ -60,74 +60,15 @@ struct PresentationDragIndicatorView: View {
     }
 }
 
-struct HintView: View {
-    var color: Color
-    var imageName: String
-    var text: String
-    var width: CGFloat
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            RoundedRectangle(cornerRadius: 8)
-                .frame(width: 48, height: 48)
-                .foregroundStyle(color)
-                .overlay {
-                    Image(systemName: imageName)
-                        .font(.title2)
-                }
-            
-            Text2(text)
-        }
-        .frame(width: width)
-        .multilineTextAlignment(.center)
-    }
-}
-
-struct HintRowView: View {
-    @Binding var toWhere: String
-    
-    var body: some View {
-        HStack(alignment: .top, spacing: 16) {
-            NavigationLink {
-                Text("Сложный маршрут")
-            } label: {
-                HintView(color: .testDarkGreen, imageName: "command", text: "Сложный маршрут", width: 70)
-            }
-            .foregroundStyle(.primary)
-            
-            Button {
-                toWhere = "Куда угодно"
-            } label: {
-                HintView(color: .testBlue, imageName: "globe", text: "Куда угодно", width: 83)
-            }
-            .buttonStyle(PlainButtonStyle())
-            
-            NavigationLink {
-                Text("Выходные")
-            } label: {
-                HintView(color: .testDarkBlue, imageName: "calendar", text: "Выходные", width: 70   )
-            }
-            .foregroundStyle(.primary)
-            
-            NavigationLink {
-                Text("Горячие билеты")
-            } label: {
-                HintView(color: .testRed, imageName: "flame.fill", text: "Горячие билеты", width: 65)
-            }
-            .foregroundStyle(.primary)
-        }
-    }
-}
-
 struct PopularDirectionView: View {
-    @Binding var toWhere: String
+    @Binding var destination: String
     
     var cityImage: ImageResource
     var cityName: String
     
     var body: some View {
         Button {
-            toWhere = cityName
+            destination = cityName
         } label: {
             VStack(alignment: .leading) {
                 HStack {

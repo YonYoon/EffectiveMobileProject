@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		150BF5312C145DD500FDE8C2 /* TicketsSearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */; };
 		150BF5332C145F0E00FDE8C2 /* CitySearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */; };
+		150BF5352C145FE600FDE8C2 /* HintRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5342C145FE600FDE8C2 /* HintRowView.swift */; };
 		15278FB42C0F603000EC9757 /* TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15278FB32C0F603000EC9757 /* TestApp.swift */; };
 		15278FB62C0F603000EC9757 /* TicketsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15278FB52C0F603000EC9757 /* TicketsSearchView.swift */; };
 		15278FB82C0F603200EC9757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15278FB72C0F603200EC9757 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsSearchFieldView.swift; sourceTree = "<group>"; };
 		150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchFieldView.swift; sourceTree = "<group>"; };
+		150BF5342C145FE600FDE8C2 /* HintRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintRowView.swift; sourceTree = "<group>"; };
 		15278FB02C0F603000EC9757 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15278FB32C0F603000EC9757 /* TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApp.swift; sourceTree = "<group>"; };
 		15278FB52C0F603000EC9757 /* TicketsSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsSearchView.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				15278FB72C0F603200EC9757 /* Assets.xcassets */,
 				15278FB92C0F603200EC9757 /* Preview Content */,
 				150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */,
+				150BF5342C145FE600FDE8C2 /* HintRowView.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				154C51DA2C10CD0C008B9832 /* Fonts.swift in Sources */,
 				154C51EF2C119E45008B9832 /* CitySearchView.swift in Sources */,
+				150BF5352C145FE600FDE8C2 /* HintRowView.swift in Sources */,
 				154C51EB2C1197AA008B9832 /* Offer.swift in Sources */,
 				150BF5312C145DD500FDE8C2 /* TicketsSearchFieldView.swift in Sources */,
 				15278FC22C101A4000EC9757 /* OfferCollectionFetcher.swift in Sources */,

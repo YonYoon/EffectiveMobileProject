@@ -10,7 +10,7 @@ import SwiftUI
 struct AviaFlightsView: View {
     @Binding var isPresented: Bool
     @Binding var fromWhere: String
-    @Binding var toWhere: String
+    @Binding var destination: String
     
     var body: some View {
         ZStack {
@@ -18,7 +18,7 @@ struct AviaFlightsView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ChosenCitiesSearchFieldView(isPresented: $isPresented, fromWhere: $fromWhere, toWhere: $toWhere)
+                ChosenCitiesSearchFieldView(isPresented: $isPresented, fromWhere: $fromWhere, toWhere: $destination)
                 
                 Spacer()
             }
@@ -29,7 +29,7 @@ struct AviaFlightsView: View {
 }
 
 #Preview {
-    AviaFlightsView(isPresented: .constant(true), fromWhere: .constant("Минск"), toWhere: .constant("Сочи"))
+    AviaFlightsView(isPresented: .constant(true), fromWhere: .constant("Минск"), destination: .constant("Сочи"))
         .preferredColorScheme(.dark)
 }
 
