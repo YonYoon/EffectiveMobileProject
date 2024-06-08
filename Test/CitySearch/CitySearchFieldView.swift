@@ -9,14 +9,14 @@ import SwiftUI
 
 struct CitySearchFieldView: View {
     @Binding var isAviaFlightsPresented: Bool
-    @Binding var fromWhere: String
-    @Binding var toWhere: String
+    @Binding var origin: String
+    @Binding var destination: String
     
     var body: some View {
         VStack {
             HStack {
                 Image(systemName: "airplane")
-                TextField("Откуда - Москва", text: $fromWhere)
+                TextField("Откуда - Москва", text: $origin)
             }
             
             Divider()
@@ -27,14 +27,14 @@ struct CitySearchFieldView: View {
             
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Куда - Турция", text: $toWhere)
+                TextField("Куда - Турция", text: $destination)
                     .onSubmit {
                         isAviaFlightsPresented.toggle()
                     }
                 
-                if !toWhere.isEmpty {
+                if !destination.isEmpty {
                     Button {
-                        toWhere = ""
+                        destination = ""
                     } label: {
                         Image(systemName: "xmark")
                             .font(.footnote)
@@ -54,6 +54,6 @@ struct CitySearchFieldView: View {
 }
 
 #Preview {
-    CitySearchFieldView(isAviaFlightsPresented: .constant(false), fromWhere: .constant("Минск"), toWhere: .constant("Сочи"))
+    CitySearchFieldView(isAviaFlightsPresented: .constant(false), origin: .constant("Минск"), destination: .constant("Сочи"))
         .preferredColorScheme(.dark)
 }

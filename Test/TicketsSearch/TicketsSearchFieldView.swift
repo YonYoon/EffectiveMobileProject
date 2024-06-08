@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TicketsSearchFieldView: View {
-    @SceneStorage("TicketsSearchView.fromWhere") private var fromWhere = ""
+    @SceneStorage("TicketsSearchView.origin") private var origin = ""
     @State private var isPresented = false
     
     var body: some View {
@@ -17,7 +17,7 @@ struct TicketsSearchFieldView: View {
                 Image(systemName: "magnifyingglass")
                 
                 VStack {
-                    TextField("Откуда - Москва", text: $fromWhere)
+                    TextField("Откуда - Москва", text: $origin)
                     
                     Divider()
                         .overlay {
@@ -30,7 +30,7 @@ struct TicketsSearchFieldView: View {
                         }
                         .foregroundStyle(.tertiary)
                         .sheet(isPresented: $isPresented) {
-                            CitySearchView(fromWhere: $fromWhere)
+                            CitySearchView(origin: $origin)
                                 .presentationBackground(Color(red: 36/255, green: 37/255, blue: 41/255))
                         }
     

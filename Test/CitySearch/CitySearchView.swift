@@ -10,7 +10,7 @@ import SwiftUI
 struct CitySearchView: View {
     @State private var isAviaFlightsPresented = false
     
-    @Binding var fromWhere: String
+    @Binding var origin: String
     @State private var destination = ""
     
     var body: some View {
@@ -19,7 +19,7 @@ struct CitySearchView: View {
                 PresentationDragIndicatorView()
                     .padding(.bottom, 25)
                 
-                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, toWhere: $destination)
+                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented, origin: $origin, destination: $destination)
                     .padding(.bottom, 26)
                 
                 HintRowView(destination: $destination)
@@ -40,14 +40,14 @@ struct CitySearchView: View {
             }
             .padding()
             .fullScreenCover(isPresented: $isAviaFlightsPresented) {
-                AviaFlightsView(isPresented: $isAviaFlightsPresented, fromWhere: $fromWhere, destination: $destination)
+                AviaFlightsView(isPresented: $isAviaFlightsPresented, origin: $origin, destination: $destination)
             }
         }
     }
 }
 
 #Preview {
-    CitySearchView(fromWhere: .constant("Минск"))
+    CitySearchView(origin: .constant("Минск"))
         .preferredColorScheme(.dark)
         .presentationBackground(Color(red: 36/255, green: 37/255, blue: 41/255))
 }

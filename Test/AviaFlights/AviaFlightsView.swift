@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AviaFlightsView: View {
     @Binding var isPresented: Bool
-    @Binding var fromWhere: String
+    @Binding var origin: String
     @Binding var destination: String
     
     var body: some View {
@@ -18,7 +18,7 @@ struct AviaFlightsView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ChosenCitiesSearchFieldView(isPresented: $isPresented, fromWhere: $fromWhere, toWhere: $destination)
+                ChosenCitiesSearchFieldView(isPresented: $isPresented, fromWhere: $origin, destination: $destination)
                 
                 Spacer()
             }
@@ -29,14 +29,14 @@ struct AviaFlightsView: View {
 }
 
 #Preview {
-    AviaFlightsView(isPresented: .constant(true), fromWhere: .constant("Минск"), destination: .constant("Сочи"))
+    AviaFlightsView(isPresented: .constant(true), origin: .constant("Минск"), destination: .constant("Сочи"))
         .preferredColorScheme(.dark)
 }
 
 struct ChosenCitiesSearchFieldView: View {
     @Binding var isPresented: Bool
     @Binding var fromWhere: String
-    @Binding var toWhere: String
+    @Binding var destination: String
     
     var body: some View {
         HStack {
@@ -53,7 +53,7 @@ struct ChosenCitiesSearchFieldView: View {
                     TextField("Откуда - Москва", text: $fromWhere)
                     
                     Button {
-                        replace(&fromWhere, with: &toWhere)
+                        replace(&fromWhere, and: &destination)
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                             .font(.footnote)
@@ -69,11 +69,11 @@ struct ChosenCitiesSearchFieldView: View {
                     .padding(.vertical, 8)
                 
                 HStack {
-                    TextField("Куда - Турция", text: $toWhere)
+                    TextField("Куда - Турция", text: $destination)
                     
-                    if !toWhere.isEmpty {
+                    if !destination.isEmpty {
                         Button {
-                            toWhere = ""
+                            destination = ""
                         } label: {
                             Image(systemName: "xmark")
                                 .font(.footnote)
@@ -91,7 +91,7 @@ struct ChosenCitiesSearchFieldView: View {
         }
     }
     
-    func replace(_ x: inout String, with y: inout String) {
+    func replace(_ x: inout String, and y: inout String) {
         let temp = x
         x = y
         y = temp
