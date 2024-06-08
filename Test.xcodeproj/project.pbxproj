@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		150BF5312C145DD500FDE8C2 /* TicketsSearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */; };
+		150BF5332C145F0E00FDE8C2 /* CitySearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */; };
 		15278FB42C0F603000EC9757 /* TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15278FB32C0F603000EC9757 /* TestApp.swift */; };
 		15278FB62C0F603000EC9757 /* TicketsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15278FB52C0F603000EC9757 /* TicketsSearchView.swift */; };
 		15278FB82C0F603200EC9757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15278FB72C0F603200EC9757 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsSearchFieldView.swift; sourceTree = "<group>"; };
+		150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchFieldView.swift; sourceTree = "<group>"; };
 		15278FB02C0F603000EC9757 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15278FB32C0F603000EC9757 /* TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApp.swift; sourceTree = "<group>"; };
 		15278FB52C0F603000EC9757 /* TicketsSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsSearchView.swift; sourceTree = "<group>"; };
@@ -65,13 +67,14 @@
 			children = (
 				15278FB32C0F603000EC9757 /* TestApp.swift */,
 				15278FB52C0F603000EC9757 /* TicketsSearchView.swift */,
+				150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */,
 				154C51EE2C119E45008B9832 /* CitySearchView.swift */,
 				156312412C137FBD00CEE3CA /* AviaFlightsView.swift */,
 				154C51ED2C1197F7008B9832 /* Model */,
 				154C51EC2C1197EB008B9832 /* Helpers */,
 				15278FB72C0F603200EC9757 /* Assets.xcassets */,
 				15278FB92C0F603200EC9757 /* Preview Content */,
-				150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */,
+				150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				15278FC22C101A4000EC9757 /* OfferCollectionFetcher.swift in Sources */,
 				15278FB62C0F603000EC9757 /* TicketsSearchView.swift in Sources */,
 				156312422C137FBD00CEE3CA /* AviaFlightsView.swift in Sources */,
+				150BF5332C145F0E00FDE8C2 /* CitySearchFieldView.swift in Sources */,
 				15278FB42C0F603000EC9757 /* TestApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
