@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AviaFlightsView: View {
     @Binding var isPresented: Bool
-    @Binding var origin: String
-    @Binding var destination: String
     
     var body: some View {
         ZStack {
@@ -18,7 +16,7 @@ struct AviaFlightsView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ChosenCitiesSearchFieldView(isPresented: $isPresented, fromWhere: $origin, destination: $destination)
+                ChosenCitiesSearchFieldView(isPresented: $isPresented)
                 
                 Spacer()
             }
@@ -29,14 +27,13 @@ struct AviaFlightsView: View {
 }
 
 #Preview {
-    AviaFlightsView(isPresented: .constant(true), origin: .constant("Минск"), destination: .constant("Сочи"))
+    AviaFlightsView(isPresented: .constant(true))
         .preferredColorScheme(.dark)
 }
 
 struct ChosenCitiesSearchFieldView: View {
     @Binding var isPresented: Bool
-    @Binding var fromWhere: String
-    @Binding var destination: String
+    @EnvironmentObject var model: Model
     
     var body: some View {
         HStack {
@@ -50,10 +47,10 @@ struct ChosenCitiesSearchFieldView: View {
             
             VStack {
                 HStack {
-                    TextField("Откуда - Москва", text: $fromWhere)
+                    TextField("Откуда - Москва", text: $model.origin)
                     
                     Button {
-                        replace(&fromWhere, and: &destination)
+                        replace(&model.origin, and: &model.destination)
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                             .font(.footnote)
@@ -69,11 +66,11 @@ struct ChosenCitiesSearchFieldView: View {
                     .padding(.vertical, 8)
                 
                 HStack {
-                    TextField("Куда - Турция", text: $destination)
+                    TextField("Куда - Турция", text: $model.destination)
                     
-                    if !destination.isEmpty {
+                    if !model.destination.isEmpty {
                         Button {
-                            destination = ""
+                            model.destination = ""
                         } label: {
                             Image(systemName: "xmark")
                                 .font(.footnote)

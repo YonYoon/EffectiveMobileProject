@@ -9,9 +9,7 @@ import SwiftUI
 
 struct CitySearchView: View {
     @State private var isAviaFlightsPresented = false
-    
-    @Binding var origin: String
-    @State private var destination = ""
+    @EnvironmentObject var model: Model
     
     var body: some View {
         NavigationStack {
@@ -19,16 +17,16 @@ struct CitySearchView: View {
                 PresentationDragIndicatorView()
                     .padding(.bottom, 25)
                 
-                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented, origin: $origin, destination: $destination)
+                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented)
                     .padding(.bottom, 26)
                 
-                HintRowView(destination: $destination)
+                HintRowView()
                     .padding(.bottom, 26)
                 
                 VStack(spacing: 8) {
-                    PopularDirectionView(destination: $destination, cityImage: .stambul, cityName: "Стамбул")
-                    PopularDirectionView(destination: $destination, cityImage: .sochi, cityName: "Сочи")
-                    PopularDirectionView(destination: $destination, cityImage: .phuket, cityName: "Пхукет")
+                    PopularDirectionView(cityImage: .stambul, cityName: "Стамбул")
+                    PopularDirectionView(cityImage: .sochi, cityName: "Сочи")
+                    PopularDirectionView(cityImage: .phuket, cityName: "Пхукет")
                 }
                 .padding()
                 .background {
@@ -40,14 +38,15 @@ struct CitySearchView: View {
             }
             .padding()
             .fullScreenCover(isPresented: $isAviaFlightsPresented) {
-                AviaFlightsView(isPresented: $isAviaFlightsPresented, origin: $origin, destination: $destination)
+                AviaFlightsView(isPresented: $isAviaFlightsPresented)
             }
         }
     }
 }
 
 #Preview {
-    CitySearchView(origin: .constant("Минск"))
+    CitySearchView()
+        .environmentObject(Model())
         .preferredColorScheme(.dark)
         .presentationBackground(Color(red: 36/255, green: 37/255, blue: 41/255))
 }
@@ -61,14 +60,14 @@ struct PresentationDragIndicatorView: View {
 }
 
 struct PopularDirectionView: View {
-    @Binding var destination: String
+    @EnvironmentObject var model: Model
     
     var cityImage: ImageResource
     var cityName: String
     
     var body: some View {
         Button {
-            destination = cityName
+            model.destination = cityName
         } label: {
             VStack(alignment: .leading) {
                 HStack {

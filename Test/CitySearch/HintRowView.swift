@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HintRowView: View {
-    @Binding var destination: String
+    @EnvironmentObject var model: Model
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -20,7 +20,7 @@ struct HintRowView: View {
             .foregroundStyle(.primary)
             
             Button {
-                destination = "Куда угодно"
+                model.destination = "Куда угодно"
             } label: {
                 HintView(color: .testBlue, imageName: "globe", text: "Куда угодно", width: 83)
             }
@@ -44,7 +44,8 @@ struct HintRowView: View {
 }
 
 #Preview {
-    HintRowView(destination: .constant("Минск"))
+    HintRowView()
+        .environmentObject(Model())
         .preferredColorScheme(.dark)
 }
 
