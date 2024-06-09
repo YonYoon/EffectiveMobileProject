@@ -12,12 +12,6 @@ class OfferCollectionFetcher: ObservableObject {
     
     private let urlString = "https://run.mocky.io/v3/214a1713-bac0-4853-907c-a1dfc3cd05fd"
     
-    enum FetchError: Error {
-        case invalidResponse
-        case invalidURL
-        case invalidData
-    }
-    
     func fetchOffers() async throws {
         guard let url = URL(string: urlString) else { throw FetchError.invalidURL }
         

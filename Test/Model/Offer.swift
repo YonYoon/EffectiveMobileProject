@@ -12,10 +12,6 @@ struct Offer: Codable, Identifiable {
     let title: String
     let town: String
     let price: Price
-    
-    struct Price: Codable {
-        let value: Int
-    }
 }
 
 struct OfferCollection: Codable {

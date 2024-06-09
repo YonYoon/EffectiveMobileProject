@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  TicketViewModel.swift
 //  Test
 //
 //  Created by Zhansen Zhalel on 08.06.2024.
@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-class Model: ObservableObject {
+class TicketViewModel: ObservableObject {
     @AppStorage("origin") var origin = ""
     @Published var destination = ""
+    
+    @Published var departureDate = Date.now
+    @Published var returnDate = Date.now
 }

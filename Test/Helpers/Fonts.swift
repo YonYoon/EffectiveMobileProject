@@ -7,23 +7,13 @@
 
 import SwiftUI
 
-struct Title1: View {
-    private var text: String
-    
-    init(_ text: String) {
-        self.text = text
-    }
-    
-    var body: some View {
-        Text(text)
+struct Title1: ViewModifier {
+    func body(content: Content) -> some View {
+        content
             .font(.system(size: 22))
             .fontWeight(.semibold)
     }
 }
-#Preview {
-    Title1("Sample text")
-}
-
 
 struct Title2: View {
     private var text: String
@@ -38,10 +28,6 @@ struct Title2: View {
             .fontWeight(.semibold)
     }
 }
-#Preview {
-    Title2("Sample text")
-}
-
 
 struct Title3: View {
     private var text: String

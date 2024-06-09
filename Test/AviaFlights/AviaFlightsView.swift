@@ -8,89 +8,87 @@
 import SwiftUI
 
 struct AviaFlightsView: View {
+    @StateObject private var ticketsFetcher = TicketOfferCollectionFetcher()
+    
+    @EnvironmentObject var ticket: TicketViewModel
+    
     @Binding var isPresented: Bool
     
+    @State private var isAllTicketsPresented = false
+    
+    @State private var showDepartureCalendar = false
+    @State private var showReturnCalendar = false
+    @State private var departureDate = Date.now
+    @State private var returnDate = Date()
+    
+    @State private var priceSubscription = false
+    
     var body: some View {
-        ZStack {
-            Color(.black)
-                .ignoresSafeArea()
-            
-            VStack {
-                ChosenCitiesSearchFieldView(isPresented: $isPresented)
+        NavigationStack {
+            ZStack {
+                Color(.black)
+                    .ignoresSafeArea()
                 
-                Spacer()
+                ScrollView {
+                    VStack {
+                        ChosenCitiesSearchFieldView(isPresented: $isPresented)
+                            .padding(.bottom, 15)
+                        
+                        TicketCustomizationView(showDepartureCalendar: $showDepartureCalendar, showReturnCalendar: $showReturnCalendar, departureDate: $departureDate)
+                        
+                        if showReturnCalendar {
+                            DatePicker("Дата обратного билета", selection: $returnDate, displayedComponents: .date)
+                                .datePickerStyle(.graphical)
+                        }
+                        
+                        if showDepartureCalendar {
+                            DatePicker("Дата отправления", selection: $departureDate, displayedComponents: .date)
+                                .datePickerStyle(.graphical)
+                        }
+                        
+                        TicketsRecommendationView(tickets: ticketsFetcher.offers)
+                            .padding(.bottom, 18)
+                        
+                        Button {
+                            isAllTicketsPresented = true
+                        } label: {
+                            Text("Посмотреть все билеты")
+                                .italic()
+                                .frame(maxWidth: .infinity, minHeight: 42)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .foregroundStyle(.testDarkBlue)
+                                }
+                        }
+                        .padding(.bottom, 24)
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        PriceSubscriptionView(priceSubscription: $priceSubscription)
+                        
+                        Spacer()
+                    }
+                    .padding()
+                    .padding(.top, 31)
+                }
+                .scrollBounceBehavior(.basedOnSize)
             }
-            .padding()
-            .padding(.top, 31)
+            .task {
+                do {
+                    try await ticketsFetcher.fetchOffers()
+                } catch {
+                    print(error)
+                }
+            }
+            .navigationDestination(isPresented: $isAllTicketsPresented) {
+                AllTicketsView(isPresented: $isAllTicketsPresented)
+                    .navigationBarBackButtonHidden()
+            }
         }
     }
 }
 
 #Preview {
     AviaFlightsView(isPresented: .constant(true))
+        .environmentObject(TicketViewModel())
         .preferredColorScheme(.dark)
-}
-
-struct ChosenCitiesSearchFieldView: View {
-    @Binding var isPresented: Bool
-    @EnvironmentObject var model: Model
-    
-    var body: some View {
-        HStack {
-            Button {
-                isPresented = false
-            } label: {
-                Image(systemName: "arrow.left")
-                    .fontWeight(.medium)
-            }
-            .buttonStyle(PlainButtonStyle())
-            
-            VStack {
-                HStack {
-                    TextField("Откуда - Москва", text: $model.origin)
-                    
-                    Button {
-                        replace(&model.origin, and: &model.destination)
-                    } label: {
-                        Image(systemName: "arrow.up.arrow.down")
-                            .font(.footnote)
-                            .padding(.trailing, 5)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-                
-                Divider()
-                    .overlay {
-                        Color(.testGrey4)
-                    }
-                    .padding(.vertical, 8)
-                
-                HStack {
-                    TextField("Куда - Турция", text: $model.destination)
-                    
-                    if !model.destination.isEmpty {
-                        Button {
-                            model.destination = ""
-                        } label: {
-                            Image(systemName: "xmark")
-                                .font(.footnote)
-                                .padding(.trailing, 8)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                    }
-                }
-            }
-        }
-        .padding()
-        .background {
-            RoundedRectangle(cornerRadius: 16)
-                .foregroundStyle(Color(red: 0.18, green: 0.19, blue: 0.21))
-        }
-    }
-    
-    func replace(_ x: inout String, and y: inout String) {
-        let temp = x
-        x = y
-        y = temp
-    }
 }

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TicketsSearchFieldView: View {
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var ticket: TicketViewModel
     @State private var isCitySearchPresented = false
+    @Binding var isAviaFlightsPresented: Bool
     
     var body: some View {
         Group {
@@ -17,7 +18,7 @@ struct TicketsSearchFieldView: View {
                 Image(systemName: "magnifyingglass")
                 
                 VStack {
-                    TextField("Откуда - Москва", text: $model.origin)
+                    TextField("Откуда - Москва", text: $ticket.origin)
                     
                     Divider()
                         .overlay {
@@ -30,7 +31,7 @@ struct TicketsSearchFieldView: View {
                         }
                         .foregroundStyle(.tertiary)
                         .sheet(isPresented: $isCitySearchPresented) {
-                            CitySearchView()
+                            CitySearchView(isAviaFlightsPresented: $isAviaFlightsPresented)
                                 .presentationBackground(Color(red: 36/255, green: 37/255, blue: 41/255))
                         }
     
@@ -55,7 +56,7 @@ struct TicketsSearchFieldView: View {
 }
 
 #Preview {
-    TicketsSearchFieldView()
+    TicketsSearchFieldView(isAviaFlightsPresented: .constant(false))
         .preferredColorScheme(.dark)
-        .environmentObject(Model())
+        .environmentObject(TicketViewModel())
 }

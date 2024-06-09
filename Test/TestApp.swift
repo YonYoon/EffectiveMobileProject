@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct TestApp: App {
     @StateObject private var fetcher = OfferCollectionFetcher()
-    @StateObject private var model = Model()
+    @StateObject private var model = TicketViewModel()
     
     var body: some Scene {
         WindowGroup {

@@ -9,20 +9,23 @@ import SwiftUI
 
 struct TicketsSearchView: View {
     @ObservedObject var fetcher: OfferCollectionFetcher
+    @State private var isAviaFlightsPresented = false
+//    @State private var isAllTicketsPresented = false
     
     var body: some View {
         NavigationStack {
             VStack {
-                Title1("Поиск дешевых авиабилетов")
+                Text("Поиск дешевых авиабилетов")
+                    .modifier(Title1())
                     .foregroundStyle(Color(red: 217/255, green: 217/255, blue: 217/255))
                     .frame(width: 172)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 38)
                 
-                TicketsSearchFieldView()
+                TicketsSearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented)
                 
                 HStack {
-                    Title1("Музыкально отлететь")
+                    Text("Музыкально отлететь").modifier(Title1())
                     Spacer()
                 }
                 .padding(.top, 32)
@@ -39,6 +42,10 @@ struct TicketsSearchView: View {
                 Spacer()
             }
             .padding()
+            .navigationDestination(isPresented: $isAviaFlightsPresented) {
+                AviaFlightsView(isPresented: $isAviaFlightsPresented)
+                    .navigationBarBackButtonHidden()
+            }
         }
         .preferredColorScheme(.dark)
         .task {
@@ -53,6 +60,7 @@ struct TicketsSearchView: View {
 
 #Preview {
     TicketsSearchView(fetcher: OfferCollectionFetcher())
+        .environmentObject(TicketViewModel())
 }
 
 struct MusicTravelView: View {

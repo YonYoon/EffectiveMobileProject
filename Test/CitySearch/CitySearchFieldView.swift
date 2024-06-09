@@ -9,13 +9,14 @@ import SwiftUI
 
 struct CitySearchFieldView: View {
     @Binding var isAviaFlightsPresented: Bool
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var ticket: TicketViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
             HStack {
                 Image(systemName: "airplane")
-                TextField("Откуда - Москва", text: $model.origin)
+                TextField("Откуда - Москва", text: $ticket.origin)
             }
             
             Divider()
@@ -26,14 +27,15 @@ struct CitySearchFieldView: View {
             
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Куда - Турция", text: $model.destination)
+                TextField("Куда - Турция", text: $ticket.destination)
                     .onSubmit {
+                        dismiss()
                         isAviaFlightsPresented.toggle()
                     }
                 
-                if !model.destination.isEmpty {
+                if !ticket.destination.isEmpty {
                     Button {
-                        model.destination = ""
+                        ticket.destination = ""
                     } label: {
                         Image(systemName: "xmark")
                             .font(.footnote)
@@ -54,6 +56,6 @@ struct CitySearchFieldView: View {
 
 #Preview {
     CitySearchFieldView(isAviaFlightsPresented: .constant(false))
-        .environmentObject(Model())
+        .environmentObject(TicketViewModel())
         .preferredColorScheme(.dark)
 }

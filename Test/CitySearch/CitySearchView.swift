@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CitySearchView: View {
-    @State private var isAviaFlightsPresented = false
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var ticket: TicketViewModel
+    
+    @Binding var isAviaFlightsPresented: Bool
     
     var body: some View {
         NavigationStack {
@@ -37,16 +38,16 @@ struct CitySearchView: View {
                 Spacer()
             }
             .padding()
-            .fullScreenCover(isPresented: $isAviaFlightsPresented) {
-                AviaFlightsView(isPresented: $isAviaFlightsPresented)
-            }
+//            .fullScreenCover(isPresented: $isAviaFlightsPresented) {
+//                AviaFlightsView(isPresented: $isAviaFlightsPresented)
+//            }
         }
     }
 }
 
 #Preview {
-    CitySearchView()
-        .environmentObject(Model())
+    CitySearchView(isAviaFlightsPresented: .constant(false))
+        .environmentObject(TicketViewModel())
         .preferredColorScheme(.dark)
         .presentationBackground(Color(red: 36/255, green: 37/255, blue: 41/255))
 }
@@ -60,7 +61,7 @@ struct PresentationDragIndicatorView: View {
 }
 
 struct PopularDirectionView: View {
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var model: TicketViewModel
     
     var cityImage: ImageResource
     var cityName: String
