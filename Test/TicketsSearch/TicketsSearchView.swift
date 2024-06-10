@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TicketsSearchView: View {
+    @StateObject private var fetcher = OfferCollectionFetcher()
     @StateObject private var coordinator = Coordinator()
-    @ObservedObject var fetcher: OfferCollectionFetcher
     @State private var path = NavigationPath()
     
     var body: some View {
@@ -60,7 +60,7 @@ struct TicketsSearchView: View {
 }
 
 #Preview {
-    TicketsSearchView(fetcher: OfferCollectionFetcher())
+    TicketsSearchView()
         .environmentObject(UserTicket())
         .environmentObject(Coordinator())
 }
