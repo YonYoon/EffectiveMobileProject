@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CitySearchFieldView: View {
-    @Binding var isAviaFlightsPresented: Bool
-    @EnvironmentObject var ticket: TicketViewModel
+    @EnvironmentObject var ticket: UserTicket
+    @EnvironmentObject var coordinator: Coordinator
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -30,7 +30,7 @@ struct CitySearchFieldView: View {
                 TextField("Куда - Турция", text: $ticket.destination)
                     .onSubmit {
                         dismiss()
-                        isAviaFlightsPresented.toggle()
+                        coordinator.toggle(.aviaFlights)
                     }
                 
                 if !ticket.destination.isEmpty {
@@ -55,7 +55,8 @@ struct CitySearchFieldView: View {
 }
 
 #Preview {
-    CitySearchFieldView(isAviaFlightsPresented: .constant(false))
-        .environmentObject(TicketViewModel())
+    CitySearchFieldView()
+        .environmentObject(UserTicket())
+        .environmentObject(Coordinator())
         .preferredColorScheme(.dark)
 }

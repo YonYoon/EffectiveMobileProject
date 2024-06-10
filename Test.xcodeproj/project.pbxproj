@@ -10,7 +10,7 @@
 		150BF5312C145DD500FDE8C2 /* TicketsSearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */; };
 		150BF5332C145F0E00FDE8C2 /* CitySearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */; };
 		150BF5352C145FE600FDE8C2 /* HintRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5342C145FE600FDE8C2 /* HintRowView.swift */; };
-		150BF53A2C14650100FDE8C2 /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5392C14650100FDE8C2 /* TicketViewModel.swift */; };
+		150BF53A2C14650100FDE8C2 /* UserTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5392C14650100FDE8C2 /* UserTicket.swift */; };
 		150BF53C2C14867000FDE8C2 /* TicketOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF53B2C14867000FDE8C2 /* TicketOffer.swift */; };
 		150BF53E2C14870300FDE8C2 /* TicketOfferCollectionFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF53D2C14870300FDE8C2 /* TicketOfferCollectionFetcher.swift */; };
 		150BF5402C1495DF00FDE8C2 /* ChosenCitiesSearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF53F2C1495DF00FDE8C2 /* ChosenCitiesSearchFieldView.swift */; };
@@ -24,6 +24,7 @@
 		150BF5532C15A5A800FDE8C2 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5522C15A5A800FDE8C2 /* FetchError.swift */; };
 		150BF5572C15A7F000FDE8C2 /* InfoForSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5562C15A7F000FDE8C2 /* InfoForSearchView.swift */; };
 		150BF5592C15A84500FDE8C2 /* TicketCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF5582C15A84500FDE8C2 /* TicketCardView.swift */; };
+		150BF55B2C172E5B00FDE8C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150BF55A2C172E5B00FDE8C2 /* Coordinator.swift */; };
 		15278FB42C0F603000EC9757 /* TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15278FB32C0F603000EC9757 /* TestApp.swift */; };
 		15278FB62C0F603000EC9757 /* TicketsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15278FB52C0F603000EC9757 /* TicketsSearchView.swift */; };
 		15278FB82C0F603200EC9757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15278FB72C0F603200EC9757 /* Assets.xcassets */; };
@@ -39,7 +40,7 @@
 		150BF5302C145DD500FDE8C2 /* TicketsSearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsSearchFieldView.swift; sourceTree = "<group>"; };
 		150BF5322C145F0E00FDE8C2 /* CitySearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchFieldView.swift; sourceTree = "<group>"; };
 		150BF5342C145FE600FDE8C2 /* HintRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintRowView.swift; sourceTree = "<group>"; };
-		150BF5392C14650100FDE8C2 /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
+		150BF5392C14650100FDE8C2 /* UserTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTicket.swift; sourceTree = "<group>"; };
 		150BF53B2C14867000FDE8C2 /* TicketOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketOffer.swift; sourceTree = "<group>"; };
 		150BF53D2C14870300FDE8C2 /* TicketOfferCollectionFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketOfferCollectionFetcher.swift; sourceTree = "<group>"; };
 		150BF53F2C1495DF00FDE8C2 /* ChosenCitiesSearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenCitiesSearchFieldView.swift; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		150BF5522C15A5A800FDE8C2 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
 		150BF5562C15A7F000FDE8C2 /* InfoForSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoForSearchView.swift; sourceTree = "<group>"; };
 		150BF5582C15A84500FDE8C2 /* TicketCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardView.swift; sourceTree = "<group>"; };
+		150BF55A2C172E5B00FDE8C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		15278FB02C0F603000EC9757 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15278FB32C0F603000EC9757 /* TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApp.swift; sourceTree = "<group>"; };
 		15278FB52C0F603000EC9757 /* TicketsSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsSearchView.swift; sourceTree = "<group>"; };
@@ -117,14 +119,16 @@
 			path = AllTickets;
 			sourceTree = "<group>";
 		};
-		150BF5542C15A5E000FDE8C2 /* Fetchers */ = {
+		150BF5542C15A5E000FDE8C2 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				15278FC12C101A4000EC9757 /* OfferCollectionFetcher.swift */,
-				150BF53D2C14870300FDE8C2 /* TicketOfferCollectionFetcher.swift */,
-				150BF54E2C159A1E00FDE8C2 /* TicketsFetcher.swift */,
+				150BF55E2C173A0500FDE8C2 /* Fetchers */,
+				154C51EA2C1197AA008B9832 /* Offer.swift */,
+				150BF53B2C14867000FDE8C2 /* TicketOffer.swift */,
+				150BF54A2C15971A00FDE8C2 /* Ticket.swift */,
+				150BF54C2C15998C00FDE8C2 /* Price.swift */,
 			);
-			path = Fetchers;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		150BF5552C15A5EC00FDE8C2 /* Errors */ = {
@@ -133,6 +137,16 @@
 				150BF5522C15A5A800FDE8C2 /* FetchError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		150BF55E2C173A0500FDE8C2 /* Fetchers */ = {
+			isa = PBXGroup;
+			children = (
+				15278FC12C101A4000EC9757 /* OfferCollectionFetcher.swift */,
+				150BF53D2C14870300FDE8C2 /* TicketOfferCollectionFetcher.swift */,
+				150BF54E2C159A1E00FDE8C2 /* TicketsFetcher.swift */,
+			);
+			path = Fetchers;
 			sourceTree = "<group>";
 		};
 		15278FA72C0F603000EC9757 = {
@@ -155,10 +169,12 @@
 			isa = PBXGroup;
 			children = (
 				15278FB32C0F603000EC9757 /* TestApp.swift */,
+				150BF55A2C172E5B00FDE8C2 /* Coordinator.swift */,
 				150BF5372C14614A00FDE8C2 /* TicketsSearch */,
 				150BF5362C14614000FDE8C2 /* CitySearch */,
 				150BF5382C14615700FDE8C2 /* AviaFlights */,
 				150BF5432C15861900FDE8C2 /* AllTickets */,
+				150BF5542C15A5E000FDE8C2 /* Networking */,
 				154C51ED2C1197F7008B9832 /* Model */,
 				150BF5552C15A5EC00FDE8C2 /* Errors */,
 				154C51EC2C1197EB008B9832 /* Helpers */,
@@ -187,12 +203,7 @@
 		154C51ED2C1197F7008B9832 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				150BF5392C14650100FDE8C2 /* TicketViewModel.swift */,
-				150BF5542C15A5E000FDE8C2 /* Fetchers */,
-				154C51EA2C1197AA008B9832 /* Offer.swift */,
-				150BF53B2C14867000FDE8C2 /* TicketOffer.swift */,
-				150BF54A2C15971A00FDE8C2 /* Ticket.swift */,
-				150BF54C2C15998C00FDE8C2 /* Price.swift */,
+				150BF5392C14650100FDE8C2 /* UserTicket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,7 +292,7 @@
 				15278FB62C0F603000EC9757 /* TicketsSearchView.swift in Sources */,
 				156312422C137FBD00CEE3CA /* AviaFlightsView.swift in Sources */,
 				150BF5452C15862F00FDE8C2 /* AllTicketsView.swift in Sources */,
-				150BF53A2C14650100FDE8C2 /* TicketViewModel.swift in Sources */,
+				150BF53A2C14650100FDE8C2 /* UserTicket.swift in Sources */,
 				150BF54D2C15998C00FDE8C2 /* Price.swift in Sources */,
 				150BF54F2C159A1E00FDE8C2 /* TicketsFetcher.swift in Sources */,
 				150BF5332C145F0E00FDE8C2 /* CitySearchFieldView.swift in Sources */,
@@ -289,6 +300,7 @@
 				150BF53C2C14867000FDE8C2 /* TicketOffer.swift in Sources */,
 				150BF5472C15942300FDE8C2 /* PriceSubscriptionView.swift in Sources */,
 				150BF5492C15947F00FDE8C2 /* TicketCustomizationView.swift in Sources */,
+				150BF55B2C172E5B00FDE8C2 /* Coordinator.swift in Sources */,
 				15278FB42C0F603000EC9757 /* TestApp.swift in Sources */,
 				150BF5532C15A5A800FDE8C2 /* FetchError.swift in Sources */,
 			);

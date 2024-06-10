@@ -10,13 +10,13 @@ import SwiftUI
 @main
 struct TestApp: App {
     @StateObject private var fetcher = OfferCollectionFetcher()
-    @StateObject private var model = TicketViewModel()
+    @StateObject private var userTicket = UserTicket()
     
     var body: some Scene {
         WindowGroup {
             TabView {
                 TicketsSearchView(fetcher: fetcher)
-                    .environmentObject(model)
+                    .environmentObject(userTicket)
                     .tabItem {
                         Label("Авиабилеты", systemImage: "airplane")
                     }

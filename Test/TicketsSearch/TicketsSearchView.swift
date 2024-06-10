@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct TicketsSearchView: View {
+    @StateObject private var coordinator = Coordinator()
     @ObservedObject var fetcher: OfferCollectionFetcher
-    @State private var isAviaFlightsPresented = false
-//    @State private var isAllTicketsPresented = false
+    @State private var path = NavigationPath()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             VStack {
                 Text("Поиск дешевых авиабилетов")
                     .modifier(Title1())
@@ -22,7 +22,7 @@ struct TicketsSearchView: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 38)
                 
-                TicketsSearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented)
+                TicketsSearchFieldView()
                 
                 HStack {
                     Text("Музыкально отлететь").modifier(Title1())
@@ -42,12 +42,13 @@ struct TicketsSearchView: View {
                 Spacer()
             }
             .padding()
-            .navigationDestination(isPresented: $isAviaFlightsPresented) {
-                AviaFlightsView(isPresented: $isAviaFlightsPresented)
+            .navigationDestination(isPresented: $coordinator.isAviaFlightsPresented) {
+                AviaFlightsView()
                     .navigationBarBackButtonHidden()
             }
         }
         .preferredColorScheme(.dark)
+        .environmentObject(coordinator)
         .task {
             do {
                 try await fetcher.fetchOffers()
@@ -60,7 +61,8 @@ struct TicketsSearchView: View {
 
 #Preview {
     TicketsSearchView(fetcher: OfferCollectionFetcher())
-        .environmentObject(TicketViewModel())
+        .environmentObject(UserTicket())
+        .environmentObject(Coordinator())
 }
 
 struct MusicTravelView: View {

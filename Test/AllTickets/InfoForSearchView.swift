@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct InfoForSearchView: View {
-    @EnvironmentObject var ticket: TicketViewModel
-    @Binding var isPresented: Bool
+    @EnvironmentObject var ticket: UserTicket
+    @EnvironmentObject var coordinator: Coordinator
     
     var body: some View {
         HStack {
             Button {
-                isPresented = false
+                coordinator.toggle(.allTickets)
             } label: {
                 Image(systemName: "arrow.left")
                     .fontWeight(.medium)
@@ -26,6 +26,7 @@ struct InfoForSearchView: View {
                 Title4("\(ticket.departureDate.formatted(.dateTime.day().month(.wide))), 1 пассажир")
                     .foregroundStyle(.testGrey6)
             }
+            .italic()
             
             Spacer()
         }
@@ -39,7 +40,7 @@ struct InfoForSearchView: View {
 }
 
 #Preview {
-    InfoForSearchView(isPresented: .constant(true))
-        .environmentObject(TicketViewModel())
+    InfoForSearchView()
+        .environmentObject(UserTicket())
         .preferredColorScheme(.dark)
 }

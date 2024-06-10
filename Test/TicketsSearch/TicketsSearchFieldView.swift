@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct TicketsSearchFieldView: View {
-    @EnvironmentObject var ticket: TicketViewModel
+    @EnvironmentObject var ticket: UserTicket
     @State private var isCitySearchPresented = false
-    @Binding var isAviaFlightsPresented: Bool
     
     var body: some View {
         Group {
@@ -31,7 +30,7 @@ struct TicketsSearchFieldView: View {
                         }
                         .foregroundStyle(.tertiary)
                         .sheet(isPresented: $isCitySearchPresented) {
-                            CitySearchView(isAviaFlightsPresented: $isAviaFlightsPresented)
+                            CitySearchView()
                                 .presentationBackground(Color(red: 36/255, green: 37/255, blue: 41/255))
                         }
     
@@ -56,7 +55,7 @@ struct TicketsSearchFieldView: View {
 }
 
 #Preview {
-    TicketsSearchFieldView(isAviaFlightsPresented: .constant(false))
+    TicketsSearchFieldView()
         .preferredColorScheme(.dark)
-        .environmentObject(TicketViewModel())
+        .environmentObject(UserTicket())
 }

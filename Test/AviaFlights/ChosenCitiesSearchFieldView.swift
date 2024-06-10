@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ChosenCitiesSearchFieldView: View {
-    @Binding var isPresented: Bool
-    @EnvironmentObject var model: TicketViewModel
+    @EnvironmentObject var userTicket: UserTicket
+    @EnvironmentObject var coordinator: Coordinator
     
     var body: some View {
         HStack {
             Button {
-                isPresented = false
+                coordinator.toggle(.aviaFlights)
             } label: {
                 Image(systemName: "arrow.left")
                     .fontWeight(.medium)
@@ -23,10 +23,10 @@ struct ChosenCitiesSearchFieldView: View {
             
             VStack {
                 HStack {
-                    TextField("Откуда - Москва", text: $model.origin)
+                    TextField("Откуда - Москва", text: $userTicket.origin)
                     
                     Button {
-                        replace(&model.origin, and: &model.destination)
+                        replace(&userTicket.origin, and: &userTicket.destination)
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                             .font(.footnote)
@@ -42,11 +42,11 @@ struct ChosenCitiesSearchFieldView: View {
                     .padding(.vertical, 8)
                 
                 HStack {
-                    TextField("Куда - Турция", text: $model.destination)
+                    TextField("Куда - Турция", text: $userTicket.destination)
                     
-                    if !model.destination.isEmpty {
+                    if !userTicket.destination.isEmpty {
                         Button {
-                            model.destination = ""
+                            userTicket.destination = ""
                         } label: {
                             Image(systemName: "xmark")
                                 .font(.footnote)
@@ -72,7 +72,8 @@ struct ChosenCitiesSearchFieldView: View {
 }
 
 #Preview {
-    ChosenCitiesSearchFieldView(isPresented: .constant(true))
-        .environmentObject(TicketViewModel())
+    ChosenCitiesSearchFieldView()
+        .environmentObject(UserTicket())
+        .environmentObject(Coordinator())
         .preferredColorScheme(.dark)
 }

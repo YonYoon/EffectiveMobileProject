@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HintRowView: View {
-    @EnvironmentObject var ticket: TicketViewModel
+    @EnvironmentObject var ticket: UserTicket
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -45,7 +45,7 @@ struct HintRowView: View {
 
 #Preview {
     HintRowView()
-        .environmentObject(TicketViewModel())
+        .environmentObject(UserTicket())
         .preferredColorScheme(.dark)
 }
 

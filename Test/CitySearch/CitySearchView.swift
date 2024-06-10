@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct CitySearchView: View {
-    @EnvironmentObject var ticket: TicketViewModel
-    
-    @Binding var isAviaFlightsPresented: Bool
+    @EnvironmentObject var ticket: UserTicket
     
     var body: some View {
         NavigationStack {
@@ -18,7 +16,7 @@ struct CitySearchView: View {
                 PresentationDragIndicatorView()
                     .padding(.bottom, 25)
                 
-                CitySearchFieldView(isAviaFlightsPresented: $isAviaFlightsPresented)
+                CitySearchFieldView()
                     .padding(.bottom, 26)
                 
                 HintRowView()
@@ -38,16 +36,13 @@ struct CitySearchView: View {
                 Spacer()
             }
             .padding()
-//            .fullScreenCover(isPresented: $isAviaFlightsPresented) {
-//                AviaFlightsView(isPresented: $isAviaFlightsPresented)
-//            }
         }
     }
 }
 
 #Preview {
-    CitySearchView(isAviaFlightsPresented: .constant(false))
-        .environmentObject(TicketViewModel())
+    CitySearchView()
+        .environmentObject(UserTicket())
         .preferredColorScheme(.dark)
         .presentationBackground(Color(red: 36/255, green: 37/255, blue: 41/255))
 }
@@ -61,14 +56,18 @@ struct PresentationDragIndicatorView: View {
 }
 
 struct PopularDirectionView: View {
-    @EnvironmentObject var model: TicketViewModel
+    @EnvironmentObject var userTicket: UserTicket
+    @EnvironmentObject var coordinator: Coordinator
+    @Environment(\.dismiss) var dismiss
     
     var cityImage: ImageResource
     var cityName: String
     
     var body: some View {
         Button {
-            model.destination = cityName
+            userTicket.destination = cityName
+            dismiss()
+            coordinator.toggle(.aviaFlights)
         } label: {
             VStack(alignment: .leading) {
                 HStack {

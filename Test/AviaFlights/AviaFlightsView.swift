@@ -10,9 +10,8 @@ import SwiftUI
 struct AviaFlightsView: View {
     @StateObject private var ticketsFetcher = TicketOfferCollectionFetcher()
     
-    @EnvironmentObject var ticket: TicketViewModel
-    
-    @Binding var isPresented: Bool
+    @EnvironmentObject var ticket: UserTicket
+    @EnvironmentObject var coordinator: Coordinator
     
     @State private var isAllTicketsPresented = false
     
@@ -24,71 +23,65 @@ struct AviaFlightsView: View {
     @State private var priceSubscription = false
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color(.black)
-                    .ignoresSafeArea()
+        ScrollView {
+            VStack {
+                ChosenCitiesSearchFieldView()
+                    .padding(.bottom, 15)
                 
-                ScrollView {
-                    VStack {
-                        ChosenCitiesSearchFieldView(isPresented: $isPresented)
-                            .padding(.bottom, 15)
-                        
-                        TicketCustomizationView(showDepartureCalendar: $showDepartureCalendar, showReturnCalendar: $showReturnCalendar, departureDate: $departureDate)
-                        
-                        if showReturnCalendar {
-                            DatePicker("Дата обратного билета", selection: $returnDate, displayedComponents: .date)
-                                .datePickerStyle(.graphical)
-                        }
-                        
-                        if showDepartureCalendar {
-                            DatePicker("Дата отправления", selection: $departureDate, displayedComponents: .date)
-                                .datePickerStyle(.graphical)
-                        }
-                        
-                        TicketsRecommendationView(tickets: ticketsFetcher.offers)
-                            .padding(.bottom, 18)
-                        
-                        Button {
-                            isAllTicketsPresented = true
-                        } label: {
-                            Text("Посмотреть все билеты")
-                                .italic()
-                                .frame(maxWidth: .infinity, minHeight: 42)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundStyle(.testDarkBlue)
-                                }
-                        }
-                        .padding(.bottom, 24)
-                        .buttonStyle(PlainButtonStyle())
-                        
-                        PriceSubscriptionView(priceSubscription: $priceSubscription)
-                        
-                        Spacer()
-                    }
-                    .padding()
-                    .padding(.top, 31)
+                TicketCustomizationView(showDepartureCalendar: $showDepartureCalendar, showReturnCalendar: $showReturnCalendar, departureDate: $departureDate)
+                
+                if showReturnCalendar {
+                    DatePicker("Дата обратного билета", selection: $returnDate, displayedComponents: .date)
+                        .datePickerStyle(.graphical)
                 }
-                .scrollBounceBehavior(.basedOnSize)
-            }
-            .task {
-                do {
-                    try await ticketsFetcher.fetchOffers()
-                } catch {
-                    print(error)
+                
+                if showDepartureCalendar {
+                    DatePicker("Дата отправления", selection: $departureDate, displayedComponents: .date)
+                        .datePickerStyle(.graphical)
                 }
+                
+                TicketsRecommendationView(tickets: ticketsFetcher.offers)
+                    .padding(.bottom, 18)
+                
+                Button {
+                    coordinator.toggle(.allTickets)
+                } label: {
+                    Text("Посмотреть все билеты")
+                        .italic()
+                        .frame(maxWidth: .infinity, minHeight: 42)
+                        .background {
+                            RoundedRectangle(cornerRadius: 8)
+                                .foregroundStyle(.testDarkBlue)
+                        }
+                }
+                .padding(.bottom, 24)
+                .buttonStyle(PlainButtonStyle())
+                
+                PriceSubscriptionView(priceSubscription: $priceSubscription)
+                
+                Spacer()
             }
-            .navigationDestination(isPresented: $isAllTicketsPresented) {
-                AllTicketsView(isPresented: $isAllTicketsPresented)
-                    .navigationBarBackButtonHidden()
+            .padding()
+            .padding(.top, 31)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .task {
+            do {
+                try await ticketsFetcher.fetchOffers()
+            } catch {
+                print(error)
             }
+        }
+        .navigationDestination(isPresented: $coordinator.isAllTicketsPresented) {
+            AllTicketsView()
+                .navigationBarBackButtonHidden()
         }
     }
 }
 
 #Preview {
-    AviaFlightsView(isPresented: .constant(true))
-        .environmentObject(TicketViewModel())
+    AviaFlightsView()
+        .environmentObject(UserTicket())
+        .environmentObject(Coordinator())
         .preferredColorScheme(.dark)
 }

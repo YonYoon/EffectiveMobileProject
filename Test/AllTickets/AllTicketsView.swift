@@ -10,13 +10,11 @@ import SwiftUI
 struct AllTicketsView: View {
     @StateObject private var ticketsFetcher = TicketsFetcher()
     
-    @Binding var isPresented: Bool
-    
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
                 VStack {
-                    InfoForSearchView(isPresented: $isPresented)
+                    InfoForSearchView()
                         .padding(.bottom, 34)
                     
                     VStack(spacing: 16) {
@@ -26,6 +24,7 @@ struct AllTicketsView: View {
                         }
                     }
                 }
+                .padding()
                 .task {
                     do {
                         try await ticketsFetcher.fetchTickets()
@@ -34,25 +33,27 @@ struct AllTicketsView: View {
                     }
                 }
             }
-            .padding(.horizontal)
             
             HStack(spacing: 16) {
                 Button("Фильтр", systemImage: "slider.horizontal.3") { }
                 
                 Button("График цен", systemImage: "chart.bar.xaxis") { }
             }
-            .padding(10)
+            .italic()
+            .font(.system(size: 14))
             .buttonStyle(PlainButtonStyle())
+            .padding(10)
             .background {
                 RoundedRectangle(cornerRadius: 50)
                     .foregroundStyle(.testBlue)
             }
+            .padding(.bottom)
         }
     }
 }
 
 #Preview {
-    AllTicketsView(isPresented: .constant(true))
+    AllTicketsView()
         .preferredColorScheme(.dark)
-        .environmentObject(TicketViewModel())
+        .environmentObject(UserTicket())
 }
