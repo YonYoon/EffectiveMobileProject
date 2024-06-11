@@ -30,6 +30,7 @@ struct CitySearchFieldView: View {
                 TextField("Куда - Турция", text: $userTicket.destination)
                     .onSubmit {
                         dismiss()
+                        userTicket.trimData()
                         coordinator.toggle(.aviaFlights)
                     }
                 

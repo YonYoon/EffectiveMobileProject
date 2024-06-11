@@ -67,6 +67,7 @@ struct PopularDirectionView: View {
         Button {
             userTicket.destination = cityName
             dismiss()
+            userTicket.trimData()
             coordinator.toggle(.aviaFlights)
         } label: {
             VStack(alignment: .leading) {
