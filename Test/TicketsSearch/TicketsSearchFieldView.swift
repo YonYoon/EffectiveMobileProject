@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TicketsSearchFieldView: View {
-    @EnvironmentObject var ticket: UserTicket
+    @EnvironmentObject var userTicket: UserTicket
     @State private var isCitySearchPresented = false
     
     var body: some View {
@@ -17,7 +17,7 @@ struct TicketsSearchFieldView: View {
                 Image(systemName: "magnifyingglass")
                 
                 VStack {
-                    TextField("Откуда - Москва", text: $ticket.origin)
+                    TextField("Откуда - Москва", text: $userTicket.origin)
                     
                     Divider()
                         .overlay {
