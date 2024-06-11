@@ -13,4 +13,9 @@ class UserTicket: ObservableObject {
     
     @Published var departureDate = Date.now
     @Published var returnDate = Date.now
+    
+    func trimData() {
+        origin = origin.trimmingCharacters(in: .whitespacesAndNewlines)
+        destination = destination.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
