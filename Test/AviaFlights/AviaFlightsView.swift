@@ -29,6 +29,7 @@ struct AviaFlightsView: View {
                     .padding(.bottom, 15)
                 
                 TicketCustomizationView(showDepartureCalendar: $showDepartureCalendar, showReturnCalendar: $showReturnCalendar, departureDate: $departureDate)
+                    .padding(.horizontal, -16)
                 
                 if showReturnCalendar {
                     DatePicker("Дата обратного билета", selection: $returnDate, displayedComponents: .date)

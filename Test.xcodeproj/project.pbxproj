@@ -102,9 +102,9 @@
 			children = (
 				156312412C137FBD00CEE3CA /* AviaFlightsView.swift */,
 				150BF53F2C1495DF00FDE8C2 /* ChosenCitiesSearchFieldView.swift */,
+				150BF5482C15947F00FDE8C2 /* TicketCustomizationView.swift */,
 				150BF5412C14969800FDE8C2 /* TicketsRecommendationView.swift */,
 				150BF5462C15942300FDE8C2 /* PriceSubscriptionView.swift */,
-				150BF5482C15947F00FDE8C2 /* TicketCustomizationView.swift */,
 			);
 			path = AviaFlights;
 			sourceTree = "<group>";

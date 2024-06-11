@@ -89,6 +89,7 @@ struct TicketCustomizationView: View {
                         .foregroundStyle(Color(red: 0.18, green: 0.19, blue: 0.21))
                 }
             }
+            .padding(.horizontal)
         }
     }
 }
