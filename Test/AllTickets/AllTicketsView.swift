@@ -25,6 +25,7 @@ struct AllTicketsView: View {
                     }
                 }
                 .padding()
+                .padding(.bottom, 50)
                 .task {
                     do {
                         try await ticketsFetcher.fetchTickets()
