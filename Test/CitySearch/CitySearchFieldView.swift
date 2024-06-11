@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CitySearchFieldView: View {
-    @EnvironmentObject var ticket: UserTicket
+    @EnvironmentObject var userTicket: UserTicket
     @EnvironmentObject var coordinator: Coordinator
     @Environment(\.dismiss) var dismiss
     
@@ -16,7 +16,7 @@ struct CitySearchFieldView: View {
         VStack {
             HStack {
                 Image(systemName: "airplane")
-                TextField("Откуда - Москва", text: $ticket.origin)
+                TextField("Откуда - Москва", text: $userTicket.origin)
             }
             
             Divider()
@@ -27,15 +27,15 @@ struct CitySearchFieldView: View {
             
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Куда - Турция", text: $ticket.destination)
+                TextField("Куда - Турция", text: $userTicket.destination)
                     .onSubmit {
                         dismiss()
                         coordinator.toggle(.aviaFlights)
                     }
                 
-                if !ticket.destination.isEmpty {
+                if !userTicket.destination.isEmpty {
                     Button {
-                        ticket.destination = ""
+                        userTicket.destination = ""
                     } label: {
                         Image(systemName: "xmark")
                             .font(.footnote)
